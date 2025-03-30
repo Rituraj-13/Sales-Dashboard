@@ -1,16 +1,21 @@
 import { Home, BarChart3, Users, ShoppingCart, Settings, HelpCircle, LogOut } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface DashboardSidebarProps {
   open: boolean
 }
 
 export default function DashboardSidebar({ open }: DashboardSidebarProps) {
+  const isMobile = useIsMobile()
+
   return (
     <aside
       className={cn(
-        "fixed inset-y-0 left-0 z-10 w-64 transform bg-card border-r shadow-sm transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
-        open ? "translate-x-0" : "-translate-x-full",
+        "fixed inset-y-0 left-0 z-20 flex h-full w-[280px] flex-col bg-card transition-transform duration-300 ease-in-out",
+        "border-r shadow-sm md:sticky md:top-0",
+        open ? "translate-x-0" : "-translate-x-full md:translate-x-0",
+        isMobile && !open ? "opacity-0" : "opacity-100"
       )}
     >
       <div className="flex h-16 items-center border-b px-6">

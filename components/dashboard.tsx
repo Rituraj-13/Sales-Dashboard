@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 import DashboardHeader from "@/components/dashboard-header"
 import DashboardSidebar from "@/components/dashboard-sidebar"
 import SalesOverview from "@/components/sales-overview"
@@ -11,27 +12,34 @@ import { salesData } from "@/lib/data"
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const isMobile = useIsMobile()
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen)
   }
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="relative flex min-h-screen">
+      {/* Overlay for mobile */}
+      {isMobile && sidebarOpen && (
+        <div
+          className="fixed inset-0 z-10 bg-black/50 transition-opacity"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       <DashboardSidebar open={sidebarOpen} />
 
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col">
         <DashboardHeader toggleSidebar={toggleSidebar} />
 
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          <div className="space-y-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-background px-4 py-6 md:px-6">
+          <div className="mx-auto space-y-6">
             <SalesOverview data={salesData.overview} />
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <RevenueChart data={salesData.revenueData} />
               <SalesByCategory data={salesData.categoryData} />
             </div>
-
             <RecentOrders orders={salesData.recentOrders} />
           </div>
         </main>
