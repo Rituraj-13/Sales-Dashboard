@@ -1,7 +1,9 @@
+import { useState, useMemo } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface Order {
   id: string
@@ -16,7 +18,29 @@ interface RecentOrdersProps {
   orders: Order[]
 }
 
+type SortOption = "date-desc" | "date-asc" | "price-desc" | "price-asc" | "status"
+
 export default function RecentOrders({ orders }: RecentOrdersProps) {
+  const [sortBy, setSortBy] = useState<SortOption>("date-desc")
+
+  const sortedOrders = useMemo(() => {
+    const ordersCopy = [...orders]
+    switch (sortBy) {
+      case "date-desc":
+        return ordersCopy.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      case "date-asc":
+        return ordersCopy.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      case "price-desc":
+        return ordersCopy.sort((a, b) => b.amount - a.amount)
+      case "price-asc":
+        return ordersCopy.sort((a, b) => a.amount - b.amount)
+      case "status":
+        return ordersCopy.sort((a, b) => a.status.localeCompare(b.status))
+      default:
+        return ordersCopy
+    }
+  }, [orders, sortBy])
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -42,8 +66,24 @@ export default function RecentOrders({ orders }: RecentOrdersProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Recent Orders</CardTitle>
-        <CardDescription>Latest customer orders and their status</CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Recent Orders</CardTitle>
+            <CardDescription>Latest customer orders and their status</CardDescription>
+          </div>
+          <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="date-desc">Date (Newest)</SelectItem>
+              <SelectItem value="date-asc">Date (Oldest)</SelectItem>
+              <SelectItem value="price-desc">Price (High-Low)</SelectItem>
+              <SelectItem value="price-asc">Price (Low-High)</SelectItem>
+              <SelectItem value="status">Status</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent>
         <Table>
@@ -58,7 +98,7 @@ export default function RecentOrders({ orders }: RecentOrdersProps) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.map((order) => (
+            {sortedOrders.map((order) => (
               <TableRow key={order.id}>
                 <TableCell className="font-medium">{order.id}</TableCell>
                 <TableCell>{order.customer}</TableCell>

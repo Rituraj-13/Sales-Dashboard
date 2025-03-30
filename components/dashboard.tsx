@@ -31,8 +31,7 @@ export default function Dashboard() {
               <RevenueChart data={salesData.revenueData} />
               <SalesByCategory data={salesData.categoryData} />
             </div>
-            
-            // @ts-ignore
+
             <RecentOrders orders={salesData.recentOrders} />
           </div>
         </main>
