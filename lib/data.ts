@@ -83,3 +83,75 @@ export const salesData = {
   ],
 }
 
+export const yearlyRevenueData = {
+  2024: [
+    { name: "Jan", revenue: 18, profit: 6 },
+    { name: "Feb", revenue: 22, profit: 8 },
+    { name: "Mar", revenue: 25, profit: 10 },
+    { name: "Apr", revenue: 32, profit: 12 },
+    { name: "May", revenue: 38, profit: 15 },
+    { name: "Jun", revenue: 42, profit: 18 },
+    { name: "Jul", revenue: 45, profit: 20 },
+    { name: "Aug", revenue: 48, profit: 22 },
+    { name: "Sep", revenue: 52, profit: 24 },
+    { name: "Oct", revenue: 55, profit: 25 },
+    { name: "Nov", revenue: 60, profit: 28 },
+    { name: "Dec", revenue: 65, profit: 30 }
+  ],
+  2023: [
+    { name: "Jan", revenue: 15, profit: 4 },
+    { name: "Feb", revenue: 18, profit: 6 },
+    { name: "Mar", revenue: 20, profit: 8 },
+    { name: "Apr", revenue: 25, profit: 10 },
+    { name: "May", revenue: 30, profit: 12 },
+    { name: "Jun", revenue: 35, profit: 15 },
+    { name: "Jul", revenue: 38, profit: 16 },
+    { name: "Aug", revenue: 42, profit: 18 },
+    { name: "Sep", revenue: 45, profit: 20 },
+    { name: "Oct", revenue: 48, profit: 22 },
+    { name: "Nov", revenue: 52, profit: 24 },
+    { name: "Dec", revenue: 58, profit: 26 }
+  ],
+  2022: [
+    { name: "Jan", revenue: 12, profit: 3 },
+    { name: "Feb", revenue: 15, profit: 5 },
+    { name: "Mar", revenue: 18, profit: 7 },
+    { name: "Apr", revenue: 22, profit: 9 },
+    { name: "May", revenue: 26, profit: 11 },
+    { name: "Jun", revenue: 30, profit: 13 },
+    { name: "Jul", revenue: 32, profit: 14 },
+    { name: "Aug", revenue: 35, profit: 15 },
+    { name: "Sep", revenue: 38, profit: 16 },
+    { name: "Oct", revenue: 42, profit: 18 },
+    { name: "Nov", revenue: 45, profit: 20 },
+    { name: "Dec", revenue: 50, profit: 22 }
+  ]
+}
+
+export const yearlyCategoryData = {
+  2024: [
+    { name: "Electronics", sales: 45 },
+    { name: "Clothing", sales: 32 },
+    { name: "Home & Kitchen", sales: 28 },
+    { name: "Books", sales: 15 },
+    { name: "Beauty", sales: 22 },
+    { name: "Sports", sales: 18 },
+  ],
+  2023: [
+    { name: "Electronics", sales: 38 },
+    { name: "Clothing", sales: 28 },
+    { name: "Home & Kitchen", sales: 24 },
+    { name: "Books", sales: 12 },
+    { name: "Beauty", sales: 18 },
+    { name: "Sports", sales: 15 },
+  ],
+  2022: [
+    { name: "Electronics", sales: 30 },
+    { name: "Clothing", sales: 25 },
+    { name: "Home & Kitchen", sales: 20 },
+    { name: "Books", sales: 10 },
+    { name: "Beauty", sales: 15 },
+    { name: "Sports", sales: 12 },
+  ]
+}
+

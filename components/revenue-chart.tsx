@@ -1,8 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { yearlyRevenueData } from "@/lib/data"
 
 interface RevenueChartProps {
   data: Array<{
@@ -12,7 +15,11 @@ interface RevenueChartProps {
   }>
 }
 
-export default function RevenueChart({ data }: RevenueChartProps) {
+export default function RevenueChart({ data: initialData }: RevenueChartProps) {
+  const [selectedYear, setSelectedYear] = useState<string>("2024")
+  // @ts-ignore
+  const data = yearlyRevenueData[selectedYear as keyof typeof yearlyRevenueData]
+
   const chartConfig = {
     revenue: {
       label: "Revenue",
@@ -36,8 +43,22 @@ export default function RevenueChart({ data }: RevenueChartProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Revenue & Profit</CardTitle>
-        <CardDescription>Monthly revenue and profit trends</CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Revenue & Profit</CardTitle>
+            <CardDescription>Monthly revenue and profit trends</CardDescription>
+          </div>
+          <Select value={selectedYear} onValueChange={setSelectedYear}>
+            <SelectTrigger className="w-[100px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="2024">2024</SelectItem>
+              <SelectItem value="2023">2023</SelectItem>
+              <SelectItem value="2022">2022</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="min-h-[300px] w-full">
