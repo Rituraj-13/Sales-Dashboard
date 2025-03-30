@@ -30,14 +30,14 @@ export default function SalesOverview({ data }: SalesOverviewProps) {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
+    <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <Card className="sm:min-w-[200px]">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
           <DollarSign className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatCurrency(data.totalRevenue)}</div>
+          <div className="text-xl sm:text-2xl font-bold">{formatCurrency(data.totalRevenue)}</div>
           <p className="text-xs text-muted-foreground flex items-center">
             {data.revenueChange > 0 ? (
               <ArrowUpIcon className="mr-1 h-4 w-4 text-emerald-500" />
@@ -52,13 +52,13 @@ export default function SalesOverview({ data }: SalesOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="sm:min-w-[200px]">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
           <ShoppingBag className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatNumber(data.totalOrders)}</div>
+          <div className="text-xl sm:text-2xl font-bold">{formatNumber(data.totalOrders)}</div>
           <p className="text-xs text-muted-foreground flex items-center">
             {data.ordersChange > 0 ? (
               <ArrowUpIcon className="mr-1 h-4 w-4 text-emerald-500" />
@@ -73,13 +73,13 @@ export default function SalesOverview({ data }: SalesOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="sm:min-w-[200px]">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Customers</CardTitle>
           <Users className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatNumber(data.totalCustomers)}</div>
+          <div className="text-xl sm:text-2xl font-bold">{formatNumber(data.totalCustomers)}</div>
           <p className="text-xs text-muted-foreground flex items-center">
             {data.customersChange > 0 ? (
               <ArrowUpIcon className="mr-1 h-4 w-4 text-emerald-500" />
@@ -94,13 +94,13 @@ export default function SalesOverview({ data }: SalesOverviewProps) {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="sm:min-w-[200px]">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Average Order</CardTitle>
           <CreditCard className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatCurrency(data.averageOrder)}</div>
+          <div className="text-xl sm:text-2xl font-bold">{formatCurrency(data.averageOrder)}</div>
           <p className="text-xs text-muted-foreground flex items-center">
             {data.averageOrderChange > 0 ? (
               <ArrowUpIcon className="mr-1 h-4 w-4 text-emerald-500" />
